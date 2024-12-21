@@ -1,0 +1,32 @@
+prefix: "&#CCFA46&lA&#C9F841&lx&#C5F63B&lB&#C2F536&ll&#BEF330&lo&#BBF12B&lc&#B7EF26&lk&#B4EE20&lL&#B0EC1B&li&#ADEA16&lm&#A9E810&li&#A6E70B&lt&#A2E505&le&#9FE300&lr &7» "
+
+storage:
+  # Drivers: H2
+  driver: "h2"
+
+  host: "localhost"
+  port: 3306
+  name: "database_name"
+  username: "database_username"
+  password: "database_password"
+
+  pool:
+    maximumPoolSize: 10
+    minimumIdle: 5
+    connectionTimeout: 30000
+    maxLifetime: 1800000
+    idleTimeout: 600000
+
+limits:
+  OBSERVER:
+    default: 280
+    per-chunk: true
+    permissions:
+      axblocklimiter.piston.300: 300
+  PISTON+STICKY_PISTON:
+    default: 1920
+    per-chunk: true
+    permissions:
+      axblocklimiter.piston.2000: 2000
+
+version: '1'

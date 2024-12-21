@@ -1,0 +1,8 @@
+messages:
+  block-limit-reached: "&cYou cannot place more blocks of type %block%. Limit: %limit%"
+  block-status: "&aPlaced: %current%/%limit% blocks in chunk [%chunk%]"
+
+  reload-command:
+    success: "%prefix% &aSikeresen újratöltődtek a fájlok."
+
+version: '1'

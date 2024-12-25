@@ -1,8 +1,21 @@
 messages:
-  block-limit-reached: "&cYou cannot place more blocks of type %block%. Limit: %limit%"
-  block-status: "&aPlaced: %current%/%limit% blocks in chunk [%chunk%]"
+  command-only-for-players: "%prefix% &cThis command can only be used by players."
+
+  block-limit-reached: "%prefix% &c%block% limit reached. &8| &4%limit% block"
+  block-status: "%prefix% &a%current%/%limit% %block% &8| &2Chunk: [%chunk%]"
+  no-build-permission: "%prefix% &cYou cannot place blocks in a protected region!"
 
   reload-command:
-    success: "%prefix% &aSikeresen újratöltődtek a fájlok."
+    success: "%prefix% &aThe plugin files has been reloaded."
 
-version: '1'
+  recalculate-command:
+    invalid-world: "%prefix% &cThe specified world does not exist!"
+    recalculation-update: "%prefix% &aUpdated %block% count in chunk %chunk% from %old% to %new%."
+    recalculation-success: "%prefix% &aRecalculation completed for chunk %chunk%."
+    recalculation-failure: "%prefix% &cAn error occurred during recalculation. Check the logs."
+
+  set-command:
+    block-count-set-success: "%prefix% &aBlock count for %block% in chunk %chunk% set to %count%!"
+    block-count-set-failure: "%prefix% &cFailed to set block count. Please check the logs."
+
+version: '2'

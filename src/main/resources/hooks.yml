@@ -1,0 +1,8 @@
+hooks:
+  settings:
+    region-plugin: KingdomsX
+
+  register:
+    KingdomsX: true
+
+version: 1

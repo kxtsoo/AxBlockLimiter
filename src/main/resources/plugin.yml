@@ -1,7 +1,11 @@
 name: AxBlockLimiter
-version: '1.0.0'
+version: '${project.version}'
 main: hu.kxtsoo.axBlockLimiter.AxBlockLimiter
 api-version: '1.20'
+author: 'kxtsoo'
+
+softdepend:
+  - KingdomsX
 
 libraries:
   - dev.dejvokep:boosted-yaml:1.3

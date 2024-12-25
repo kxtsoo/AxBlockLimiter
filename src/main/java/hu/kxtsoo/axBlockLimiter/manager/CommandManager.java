@@ -2,7 +2,9 @@ package hu.kxtsoo.axBlockLimiter.manager;
 
 import dev.triumphteam.cmd.bukkit.BukkitCommandManager;
 import hu.kxtsoo.axBlockLimiter.AxBlockLimiter;
+import hu.kxtsoo.axBlockLimiter.command.RecalculateCommand;
 import hu.kxtsoo.axBlockLimiter.command.ReloadCommand;
+import hu.kxtsoo.axBlockLimiter.command.SetCommand;
 import hu.kxtsoo.axBlockLimiter.util.ConfigUtil;
 import org.bukkit.command.CommandSender;
 
@@ -21,5 +23,7 @@ public class CommandManager {
 
     public void registerCommands() {
         commandManager.registerCommand(new ReloadCommand());
+        commandManager.registerCommand(new SetCommand(configUtil));
+        commandManager.registerCommand(new RecalculateCommand(configUtil));
     }
 }

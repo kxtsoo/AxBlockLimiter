@@ -72,6 +72,11 @@ public class MySQL implements DatabaseInterface {
     }
 
     @Override
+    public void setChunkBlockCount(int chunkX, int chunkZ, Material blockType, int count) throws SQLException {
+
+    }
+
+    @Override
     public void close() {
         if (dataSource != null) {
             dataSource.close();

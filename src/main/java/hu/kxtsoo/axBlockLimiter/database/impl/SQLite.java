@@ -10,7 +10,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.UUID;
 
 public class SQLite implements DatabaseInterface {
     private final JavaPlugin plugin;
@@ -56,6 +55,11 @@ public class SQLite implements DatabaseInterface {
     @Override
     public int getChunkBlockCount(int chunkX, int chunkZ, Material blockType) throws SQLException {
         return 0;
+    }
+
+    @Override
+    public void setChunkBlockCount(int chunkX, int chunkZ, Material blockType, int count) throws SQLException {
+
     }
 
     @Override

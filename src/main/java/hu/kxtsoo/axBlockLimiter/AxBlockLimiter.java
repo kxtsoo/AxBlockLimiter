@@ -1,6 +1,7 @@
 package hu.kxtsoo.axBlockLimiter;
 
 import hu.kxtsoo.axBlockLimiter.database.DatabaseManager;
+import hu.kxtsoo.axBlockLimiter.hook.HookManager;
 import hu.kxtsoo.axBlockLimiter.listener.BlockBreakListener;
 import hu.kxtsoo.axBlockLimiter.listener.BlockPlaceListener;
 import hu.kxtsoo.axBlockLimiter.manager.CommandManager;
@@ -14,6 +15,7 @@ public final class AxBlockLimiter extends JavaPlugin {
 
     private static AxBlockLimiter instance;
     private ConfigUtil configUtil;
+    private HookManager hookManager;
 
     @Override
     public void onEnable() {
@@ -27,6 +29,9 @@ public final class AxBlockLimiter extends JavaPlugin {
         } catch (Exception e) {
             getLogger().log(Level.SEVERE, "Failed to initialize database", e);
         }
+
+        hookManager = new HookManager(this, configUtil);
+        hookManager.registerHooks();
 
         getServer().getPluginManager().registerEvents(new BlockPlaceListener(configUtil), this);
         getServer().getPluginManager().registerEvents(new BlockBreakListener(configUtil), this);
@@ -52,5 +57,9 @@ public final class AxBlockLimiter extends JavaPlugin {
 
     public ConfigUtil getConfigUtil() {
         return configUtil;
+    }
+
+    public HookManager getHookManager() {
+        return hookManager;
     }
 }

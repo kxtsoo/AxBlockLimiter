@@ -28,6 +28,18 @@ public class BlockPlaceListener implements Listener {
         Material blockType = event.getBlockPlaced().getType();
         Chunk chunk = event.getBlock().getChunk();
 
+        if (AxBlockLimiter.getInstance().getHookManager().getRegionHook() != null) {
+            if (AxBlockLimiter.getInstance().getHookManager().getRegionHook().isInProtectedRegion(event.getBlock().getLocation())) {
+                if (!AxBlockLimiter.getInstance().getHookManager().getRegionHook().canBuild(player, event.getBlock().getLocation())) {
+                    if(!configUtil.getMessage("messages.no-build-permission").isEmpty()) {
+                        player.sendActionBar(configUtil.getMessage("messages.no-build-permission"));
+                    }
+                    event.setCancelled(true);
+                    return;
+                }
+            }
+        }
+
         String groupKey = configUtil.getGroupKey(blockType);
 
         if (!configUtil.getConfig().contains("limits." + groupKey)) {
@@ -37,11 +49,9 @@ public class BlockPlaceListener implements Listener {
         int limit = configUtil.getConfig().getInt("limits." + groupKey + ".default", -1);
 
         try {
-            // Blokkszám aszinkron lekérése
             int currentCount = getCurrentChunkCount(chunk, groupKey);
 
             if (currentCount >= limit) {
-                // Szinkron tiltás, ha a limitet elérte
                 event.setCancelled(true);
                 player.sendActionBar(configUtil.getMessage("messages.block-limit-reached")
                         .replace("%current%", String.valueOf(currentCount))
@@ -50,7 +60,6 @@ public class BlockPlaceListener implements Listener {
                 return;
             }
 
-            // Adatbázis frissítése (aszinkronban)
             Bukkit.getScheduler().runTaskAsynchronously(AxBlockLimiter.getInstance(), () -> {
                 try {
                     DatabaseManager.incrementChunkBlockCount(chunk.getX(), chunk.getZ(), blockType);

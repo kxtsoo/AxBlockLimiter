@@ -9,6 +9,7 @@ import org.h2.jdbc.JdbcConnection;
 
 import java.io.File;
 import java.sql.*;
+import java.util.Map;
 import java.util.Properties;
 import java.util.UUID;
 
@@ -89,6 +90,25 @@ public class H2 implements DatabaseInterface {
             }
         }
         return 0;
+    }
+
+    @Override
+    public void setChunkBlockCount(int chunkX, int chunkZ, Material blockType, int count) throws SQLException {
+        String deleteQuery = "DELETE FROM axblocklimiter_block_counts WHERE chunk_x = ? AND chunk_z = ?";
+        try (PreparedStatement deleteStmt = connection.prepareStatement(deleteQuery)) {
+            deleteStmt.setInt(1, chunkX);
+            deleteStmt.setInt(2, chunkZ);
+            deleteStmt.executeUpdate();
+        }
+
+        String insertQuery = "INSERT INTO axblocklimiter_block_counts (chunk_x, chunk_z, block_type, count) VALUES (?, ?, ?, ?)";
+        try (PreparedStatement insertStmt = connection.prepareStatement(insertQuery)) {
+            insertStmt.setInt(1, chunkX);
+            insertStmt.setInt(2, chunkZ);
+            insertStmt.setString(3, blockType.toString());
+            insertStmt.setInt(4, count);
+            insertStmt.executeUpdate();
+        }
     }
 
     @Override

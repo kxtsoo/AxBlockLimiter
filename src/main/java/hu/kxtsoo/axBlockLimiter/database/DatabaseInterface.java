@@ -12,6 +12,7 @@ public interface DatabaseInterface {
     void incrementChunkBlockCount(int chunkX, int chunkZ, Material blockType) throws SQLException;
     void decrementChunkBlockCount(int chunkX, int chunkZ, Material blockType) throws SQLException;
     int getChunkBlockCount(int chunkX, int chunkZ, Material blockType) throws SQLException;
+    void setChunkBlockCount(int chunkX, int chunkZ, Material blockType, int count) throws SQLException;
 
     void close() throws SQLException;
 }

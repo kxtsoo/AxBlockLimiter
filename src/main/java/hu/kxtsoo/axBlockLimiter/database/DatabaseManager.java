@@ -46,6 +46,10 @@ public class DatabaseManager {
         return database.getChunkBlockCount(chunkX, chunkZ, blockType);
     }
 
+    public static void setChunkBlockCount(int chunkX, int chunkZ, Material blockType, int count) throws SQLException {
+        database.setChunkBlockCount(chunkX, chunkZ, blockType, count);
+    }
+
     public static void close() throws SQLException {
         if (database != null) {
             database.close();
